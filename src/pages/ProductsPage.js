@@ -23,27 +23,27 @@ export default function ProductsPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Products | Minimal UI </title>
+        <title> 提案 | 数创链 </title>
       </Helmet>
 
       <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Products
+        <Typography variant="h4" sx={{ mb: 1 }}>
+          提案投票
         </Typography>
 
         <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
           <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ProductFilterSidebar
+            {/* <ProductFilterSidebar
               openFilter={openFilter}
               onOpenFilter={handleOpenFilter}
               onCloseFilter={handleCloseFilter}
-            />
-            <ProductSort />
+            /> */}
+            {/* <ProductSort /> */}
           </Stack>
         </Stack>
 
         <ProductList products={PRODUCTS} />
-        <ProductCartWidget />
+        {/* <ProductCartWidget /> */}
       </Container>
     </>
   );

@@ -31,48 +31,12 @@ import Scrollbar from '../../../components/scrollbar';
 const NOTIFICATIONS = [
   {
     id: faker.datatype.uuid(),
-    title: 'Your order is placed',
-    description: 'waiting for shipping',
+    title: '新节点“xxxx”加入申请',
+    description: '等待你的投票',
     avatar: null,
     type: 'order_placed',
     createdAt: set(new Date(), { hours: 10, minutes: 30 }),
     isUnRead: true,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: faker.name.fullName(),
-    description: 'answered to your comment on the Minimal',
-    avatar: '/assets/images/avatars/avatar_2.jpg',
-    type: 'friend_interactive',
-    createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
-    isUnRead: true,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'You have new message',
-    description: '5 unread messages',
-    avatar: null,
-    type: 'chat_message',
-    createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
-    isUnRead: false,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'You have new mail',
-    description: 'sent from Guido Padberg',
-    avatar: null,
-    type: 'mail',
-    createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
-    isUnRead: false,
-  },
-  {
-    id: faker.datatype.uuid(),
-    title: 'Delivery processing',
-    description: 'Your order is being shipped',
-    avatar: null,
-    type: 'order_shipped',
-    createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
-    isUnRead: false,
   },
 ];
 
@@ -124,7 +88,7 @@ export default function NotificationsPopover() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1">Notifications</Typography>
+            <Typography variant="subtitle1">通知</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               You have {totalUnRead} unread messages
             </Typography>

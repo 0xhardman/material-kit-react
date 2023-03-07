@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 // components
+import { useMemo, useRef, useEffect, useCallback, useState } from 'react';
 import Iconify from '../components/iconify';
 // sections
 import {
@@ -20,41 +21,62 @@ import {
 
 // ----------------------------------------------------------------------
 
+function adddot(number) {
+  return number.toLocaleString();
+}
+
 export default function DashboardAppPage() {
   const theme = useTheme();
-
+  const [height, setHeight] = useState(12345678);
+  const blockHeightRef = useRef(12345678);
+  useEffect(() => {
+    setTimeout(() => {
+      setHeight(height + 1);
+      blockHeightRef.current += 1;
+    }, 300);
+  });
   return (
     <>
       <Helmet>
-        <title> Dashboard | Minimal UI </title>
+        <title> 监控面板 | 数创链 </title>
       </Helmet>
 
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back
+          欢迎回来！当前监控数据如下：
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+          <Grid item xs={12} sm={6} md={4}>
+            <AppWidgetSummary
+              title="当前区块高度"
+              total={adddot(blockHeightRef.current)}
+              icon={'ant-design:android-filled'}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+          <Grid item xs={12} sm={6} md={4}>
+            <AppWidgetSummary title="历史 TPS" total={601} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
+          <Grid item xs={12} sm={6} md={4}>
+            <AppWidgetSummary title="平均出快时间" total={'3.8秒'} color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+          <Grid item xs={12} sm={6} md={4}>
+            <AppWidgetSummary title="累计交易笔数" total={'769.7万'} color="error" icon={'ant-design:bug-filled'} />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <AppWidgetSummary title="智能合约" total={949} color="success" icon={'ant-design:bug-filled'} />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <AppWidgetSummary title="已铸造" total={'3830'} color="info" icon={'ant-design:bug-filled'} />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={12}>
             <AppWebsiteVisits
-              title="Website Visits"
-              subheader="(+43%) than last year"
+              title="交易数量"
+              // subheader="(+43%) than last "
               chartLabels={[
                 '01/01/2003',
                 '02/01/2003',
@@ -69,20 +91,20 @@ export default function DashboardAppPage() {
                 '11/01/2003',
               ]}
               chartData={[
+                // {
+                //   name: 'Team A',
+                //   type: 'column',
+                //   fill: 'solid',
+                //   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                // },
+                // {
+                //   name: 'Team B',
+                //   type: 'area',
+                //   fill: 'gradient',
+                //   data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+                // },
                 {
-                  name: 'Team A',
-                  type: 'column',
-                  fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-                },
-                {
-                  name: 'Team B',
-                  type: 'area',
-                  fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-                },
-                {
-                  name: 'Team C',
+                  name: 'TXs',
                   type: 'line',
                   fill: 'solid',
                   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
@@ -91,7 +113,7 @@ export default function DashboardAppPage() {
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
@@ -107,9 +129,9 @@ export default function DashboardAppPage() {
                 theme.palette.error.main,
               ]}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={8}>
+          {/* <Grid item xs={12} md={6} lg={8}>
             <AppConversionRates
               title="Conversion Rates"
               subheader="(+43%) than last year"
@@ -126,9 +148,9 @@ export default function DashboardAppPage() {
                 { label: 'United Kingdom', value: 1380 },
               ]}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppCurrentSubject
               title="Current Subject"
               chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
@@ -139,22 +161,22 @@ export default function DashboardAppPage() {
               ]}
               chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={12}>
             <AppNewsUpdate
-              title="News Update"
+              title="最新交易"
               list={[...Array(5)].map((_, index) => ({
                 id: faker.datatype.uuid(),
-                title: faker.name.jobTitle(),
-                description: faker.name.jobTitle(),
+                title: faker.datatype.hexadecimal(40),
+                description: `from: ${faker.datatype.hexadecimal(40)} to: ${faker.datatype.hexadecimal(40)}`,
                 image: `/assets/images/covers/cover_${index + 1}.jpg`,
                 postedAt: faker.date.recent(),
               }))}
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppOrderTimeline
               title="Order Timeline"
               list={[...Array(5)].map((_, index) => ({
@@ -170,9 +192,9 @@ export default function DashboardAppPage() {
                 time: faker.date.past(),
               }))}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppTrafficBySite
               title="Traffic by Site"
               list={[
@@ -198,9 +220,9 @@ export default function DashboardAppPage() {
                 },
               ]}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={8}>
+          {/* <Grid item xs={12} md={6} lg={12}>
             <AppTasks
               title="Tasks"
               list={[
@@ -211,7 +233,7 @@ export default function DashboardAppPage() {
                 { id: '5', label: 'Sprint Showcase' },
               ]}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </>

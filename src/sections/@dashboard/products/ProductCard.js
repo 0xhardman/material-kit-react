@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 // @mui
-import { Box, Card, Link, Typography, Stack } from '@mui/material';
+import { Box, Card, Link, Typography, Stack, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
@@ -12,10 +12,12 @@ import { ColorPreview } from '../../../components/color-utils';
 
 const StyledProductImg = styled('img')({
   top: 0,
-  width: '100%',
-  height: '100%',
+  width: '80%',
+  height: '80%',
   objectFit: 'cover',
   position: 'absolute',
+  marginTop: '45px',
+  marginLeft: '30px',
 });
 
 // ----------------------------------------------------------------------
@@ -56,9 +58,18 @@ export default function ShopProductCard({ product }) {
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          <Button variant="outlined" color="success">
+            赞成
+          </Button>
+          <Button variant="outlined" color="error">
+            反对
+          </Button>
+        </Stack>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
-            <Typography
+            赞成票:3
+            {/* <Typography
               component="span"
               variant="body1"
               sx={{
@@ -66,11 +77,13 @@ export default function ShopProductCard({ product }) {
                 textDecoration: 'line-through',
               }}
             >
+              
               {priceSale && fCurrency(priceSale)}
             </Typography>
             &nbsp;
-            {fCurrency(price)}
+            {fCurrency(price)} */}
           </Typography>
+          <Typography variant="subtitle1">反对票：1</Typography>
         </Stack>
       </Stack>
     </Card>

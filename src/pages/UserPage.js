@@ -34,11 +34,11 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'name', label: '名称', alignRight: false },
+  { id: 'company', label: '地址', alignRight: false },
+  { id: 'role', label: '角色', alignRight: false },
+  { id: 'isVerified', label: '投票权', alignRight: false },
+  { id: 'status', label: '状态', alignRight: false },
   { id: '' },
 ];
 
@@ -155,11 +155,11 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            节点浏览
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
-          </Button>
+          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+            新用户
+          </Button> */}
         </Stack>
 
         <Card>
@@ -184,12 +184,12 @@ export default function UserPage() {
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
-                        <TableCell padding="checkbox">
+                        {/* <TableCell padding="checkbox">
                           <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
-                        </TableCell>
+                        </TableCell> */}
 
                         <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2}>
+                          <Stack direction="row" alignItems="center" spacing={2} ml={2}>
                             <Avatar alt={name} src={avatarUrl} />
                             <Typography variant="subtitle2" noWrap>
                               {name}
@@ -281,13 +281,13 @@ export default function UserPage() {
       >
         <MenuItem>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
+          关闭
         </MenuItem>
 
-        <MenuItem sx={{ color: 'error.main' }}>
+        {/* <MenuItem sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Delete
-        </MenuItem>
+        </MenuItem> */}
       </Popover>
     </>
   );
