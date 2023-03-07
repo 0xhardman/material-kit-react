@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int              @id
+  avatar         String
+  name           String
+  pubKey         String
+  priKey         String
+  password       String
+  Node           Node[]
+  ProposalTicket ProposalTicket[]
+}
+
+enum NodeStatus {
+  OPEN
+  START
+}
+
+enum NodeRole {
+  ECN //Executive consensus node 常务共识节点
+  CN //Consensus node 共识节点
+  TN //Technical node 技术节点
+  LN //Light node 轻节点
+  SSN //Special service node 专项服务节点
+}
+
+model Node {
+  id       Int        @id
+  name     String
+  location String
+  role     NodeRole
+  status   NodeStatus
+  owner    User       @relation(fields: [ownerId], references: [id])
+  ownerId  Int
+}
+
+model Proposal {
+  id             Int              @id
+  title          String
+  content        String
+  ProposalTicket ProposalTicket[]
+}
+
+enum ProposalTicketType {
+  APPROVE
+  AGAINST
+}
+
+model ProposalTicket {
+  id         Int                @id
+  proposal   Proposal           @relation(fields: [proposalId], references: [id])
+  proposalId Int
+  user       User               @relation(fields: [userId], references: [id])
+  userId     Int
+  type       ProposalTicketType
+}

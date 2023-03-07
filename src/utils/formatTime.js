@@ -1,3 +1,4 @@
+import { zhCN } from 'date-fns/locale';
 import { format, getTime, formatDistanceToNow } from 'date-fns';
 
 // ----------------------------------------------------------------------
@@ -22,6 +23,8 @@ export function fToNow(date) {
   return date
     ? formatDistanceToNow(new Date(date), {
         addSuffix: true,
+        locale: zhCN,
+        includeSeconds: true,
       })
     : '';
 }

@@ -1,4 +1,5 @@
-import { BrowserRouter } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 // routes
 import Router from './routes';

@@ -4,20 +4,9 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 // components
-import { useMemo, useRef, useEffect, useCallback, useState } from 'react';
-import Iconify from '../components/iconify';
+import { useRef, useEffect, useState } from 'react';
 // sections
-import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppTrafficBySite,
-  AppWidgetSummary,
-  AppCurrentSubject,
-  AppConversionRates,
-} from '../sections/@dashboard/app';
+import { AppNewsUpdate, AppWebsiteVisits, AppWidgetSummary } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
 
@@ -28,12 +17,13 @@ function adddot(number) {
 export default function DashboardAppPage() {
   const theme = useTheme();
   const [height, setHeight] = useState(12345678);
-  const blockHeightRef = useRef(12345678);
+  const blockHeightRef = useRef(parseInt(new Date().valueOf() / 6000, 10));
+
   useEffect(() => {
     setTimeout(() => {
       setHeight(height + 1);
       blockHeightRef.current += 1;
-    }, 300);
+    }, 3000);
   });
   return (
     <>
@@ -51,6 +41,8 @@ export default function DashboardAppPage() {
             <AppWidgetSummary
               title="当前区块高度"
               total={adddot(blockHeightRef.current)}
+              // total={new Date()}
+              // total={now}
               icon={'ant-design:android-filled'}
             />
           </Grid>
@@ -171,7 +163,7 @@ export default function DashboardAppPage() {
                 title: faker.datatype.hexadecimal(40),
                 description: `from: ${faker.datatype.hexadecimal(40)} to: ${faker.datatype.hexadecimal(40)}`,
                 image: `/assets/images/covers/cover_${index + 1}.jpg`,
-                postedAt: faker.date.recent(),
+                postedAt: Date.now() - index * 5000,
               }))}
             />
           </Grid>

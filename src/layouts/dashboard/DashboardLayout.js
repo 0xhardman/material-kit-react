@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 //
 import Header from './header';
 import Nav from './nav';
-
+import { getLocalStorage } from '../../utils/utility';
 // ----------------------------------------------------------------------
 
 const APP_BAR_MOBILE = 64;
@@ -34,6 +34,15 @@ const Main = styled('div')(({ theme }) => ({
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const accessToken = getLocalStorage('accessToken');
+    console.log(accessToken);
+    if (!accessToken) {
+      navigate('/login', { replace: true });
+    }
+  }, []);
 
   return (
     <StyledRoot>
