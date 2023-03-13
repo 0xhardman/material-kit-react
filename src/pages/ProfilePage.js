@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+
 // @mui
 import {
   Stack,
@@ -20,9 +21,12 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 // components
 import { useRef, useEffect, useState } from 'react';
+import useUser from '../hooks/useUser';
 
 // sections
 import { AppNewsUpdate, AppWebsiteVisits, AppWidgetSummary } from '../sections/@dashboard/app';
+
+import { getLocalStorage } from '../utils/utility';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +36,7 @@ function adddot(number) {
 
 export default function ProfilePage() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [account, error] = useUser(getLocalStorage('accessToken'));
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -69,7 +73,8 @@ export default function ProfilePage() {
                 }}
                 variant="standard"
                 label="UID"
-                defaultValue="12345678"
+                value={account?.id}
+                defaultValue={0}
               />
               <TextField
                 InputProps={{
@@ -77,7 +82,8 @@ export default function ProfilePage() {
                 }}
                 variant="standard"
                 label="名称"
-                defaultValue="中国技术交易所"
+                defaultValue="0"
+                value={account?.name}
               />
               <TextField
                 InputProps={{
@@ -85,7 +91,8 @@ export default function ProfilePage() {
                 }}
                 variant="standard"
                 label="邮箱"
-                defaultValue="12345678@qq.com"
+                defaultValue="0"
+                value={account?.name}
               />
               <TextField
                 InputProps={{
@@ -94,11 +101,13 @@ export default function ProfilePage() {
                 variant="standard"
                 label="公钥"
                 defaultValue="0xa840379be520D775f642dEC77D5ef039A2Cd6F88"
+                value={account?.pubKey}
               />
               <FormControl variant="standard">
                 <InputLabel htmlFor="standard-adornment-password">私钥</InputLabel>
                 <Input
-                  defaultValue="b7f294d514c922acec51fb692ec015ce061cbb18c42bdb480f18d622ef7fb1bf"
+                  defaultValue="b"
+                  value={account?.priKey}
                   id="standard-adornment-password"
                   type={showPassword ? 'text' : 'password'}
                   endAdornment={

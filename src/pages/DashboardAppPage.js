@@ -24,9 +24,10 @@ export default function DashboardAppPage() {
   const [height, setHeight] = useState(12345678);
   const blockHeightRef = useRef(parseInt(new Date().valueOf() / 6000, 10));
 
-  if (error) {
-    navigate('/login', { replace: true });
-  }
+  console.log({ error });
+  // if (error) {
+  //   navigate('/login', { replace: true });
+  // }
   useEffect(() => {
     setTimeout(() => {
       setHeight(height + 1);

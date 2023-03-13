@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+// eslint-disable-next-line camelcase
+import jwt_decode from 'jwt-decode';
 import tokenParser from '../utils/tokenParser';
 
 export default function useUser(token) {
@@ -7,7 +9,7 @@ export default function useUser(token) {
 
   function decode(token) {
     try {
-      const data = tokenParser(token);
+      const data = jwt_decode(token);
       setUser(data);
     } catch (err) {
       setError(err);

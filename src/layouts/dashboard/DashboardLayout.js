@@ -38,7 +38,6 @@ export default function DashboardLayout() {
   const navigate = useNavigate();
   useEffect(() => {
     const accessToken = getLocalStorage('accessToken');
-    console.log(accessToken);
     if (!accessToken) {
       navigate('/login', { replace: true });
     }

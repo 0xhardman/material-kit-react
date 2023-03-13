@@ -1,7 +1,7 @@
 /* eslint-disable no-throw-literal */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -15,7 +15,12 @@ import showMessage from '../../../components/showMessage';
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      id: '',
+      password: '',
+    },
+  });
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,7 +44,7 @@ export default function LoginForm() {
   };
   const handleClick = (e) => {
     console.log(e);
-    login({ id: parseInt(e.id, 10), password: parseInt(e.password, 10) });
+    login({ id: parseInt(e.id, 10), password: e.password });
   };
 
   return (
@@ -63,13 +68,6 @@ export default function LoginForm() {
           }}
         />
       </Stack>
-
-      {/* <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <Checkbox name="remember" label="Remember me" />
-        <Link variant="subtitle2" underline="hover">
-          Forgot password?
-        </Link>
-      </Stack> */}
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleSubmit(handleClick)}>
         登录
