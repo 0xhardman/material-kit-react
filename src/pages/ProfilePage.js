@@ -100,7 +100,7 @@ export default function ProfilePage() {
                 }}
                 variant="standard"
                 label="公钥"
-                defaultValue="0xa840379be520D775f642dEC77D5ef039A2Cd6F88"
+                defaultValue="0"
                 value={account?.pubKey}
               />
               <FormControl variant="standard">

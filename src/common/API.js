@@ -7,7 +7,7 @@ if (typeof window !== 'undefined') {
   axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 }
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://main-dashboard-backend.demo.kc-chain.com';
 
 function refreshAPIToken() {
   if (typeof window !== 'undefined') {
